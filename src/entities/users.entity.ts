@@ -16,7 +16,7 @@ class User {
     id: number;
 
     @Column({ type: "varchar", length: 45 })
-    nome: string;
+    name: string;
 
     @Column({ type: "varchar", unique: true })
     email: string;
