@@ -12,7 +12,7 @@ class Address {
     zipCode: string;
 
     @Column({ type: "varchar", length: 7 })
-    number: string;
+    number?: string | null | undefined;
 
     @Column({ type: "varchar", length: 20 })
     city: string;
