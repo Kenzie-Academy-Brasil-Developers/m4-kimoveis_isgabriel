@@ -13,15 +13,15 @@ const ensureTokenIsValid = (
         throw new AppError("Missing bearer token", 401);
     }
 
-    token = token.split(" ")[1];
+    const auth = token.split(" ")[1];
 
-    jwt.verify(token, process.env.SECRET_KEY!, (error, decoded: any) => {
+    jwt.verify(auth, process.env.SECRET_KEY!, (error, decoded: any) => {
         if (error) {
             console.log(error);
             throw new AppError(error.message, 401);
         }
         req.user = {
-            id: parseInt(decoded.sub),
+            id: parseInt(decoded?.sub),
             admin: decoded.admin,
         };
         return next();

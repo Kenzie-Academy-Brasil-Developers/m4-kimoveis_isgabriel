@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { AppError } from "../../errors";
 
 const ensureUserIsAdmin = async (
@@ -6,11 +6,10 @@ const ensureUserIsAdmin = async (
     res: Response,
     next: NextFunction
 ): Promise<Response | void> => {
-    const authenticatedAdmin: boolean = req.user.admin;
-    const userId: number = req.user.id;
-    const paramsUserId: number = Number(req.params.id);
-
-    if (authenticatedAdmin === true) {
+    const authtenticatedAdmin = req.user.admin;
+    const userId = req.user.id;
+    const paramsUserId = Number(req.params.id);
+    if (authtenticatedAdmin === true) {
         return next();
     } else if (req.method === "PATCH" && userId === paramsUserId) {
         return next();
