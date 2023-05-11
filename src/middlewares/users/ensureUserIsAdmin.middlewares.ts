@@ -6,9 +6,9 @@ const ensureUserIsAdmin = async (
     res: Response,
     next: NextFunction
 ): Promise<Response | void> => {
-    const authtenticatedAdmin = req.user.admin;
-    const userId = req.user.id;
-    const paramsUserId = Number(req.params.id);
+    const authtenticatedAdmin: boolean = req.user.admin;
+    const userId: number = req.user.id;
+    const paramsUserId: number = Number(req.params.id);
     if (authtenticatedAdmin === true) {
         return next();
     } else if (req.method === "PATCH" && userId === paramsUserId) {

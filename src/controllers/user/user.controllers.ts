@@ -35,7 +35,10 @@ const patchUserController = async (
     res: Response
 ): Promise<Response> => {
     const userId: number = Number(req.params.id);
-    const updateUser = await patchUserService(req.body, userId);
+    const updateUser: TReturnCreateUser = await patchUserService(
+        req.body,
+        userId
+    );
 
     return res.status(200).json(updateUser);
 };

@@ -50,7 +50,8 @@ const createRealEstateService = async (
 
     await realEstateRepo.save(newRealEstate);
 
-    const realEstate = returnRealEstateSchema.parse(newRealEstate);
+    const realEstate: TReturnCreateRealEstate =
+        returnRealEstateSchema.parse(newRealEstate);
 
     return realEstate;
 };

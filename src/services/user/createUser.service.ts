@@ -17,7 +17,7 @@ const createUserService = async (
 
     await userRepo.save(user);
 
-    const newUser = returnUserSchema.parse(user);
+    const newUser: TReturnCreateUser = returnUserSchema.parse(user);
     return newUser;
 };
 

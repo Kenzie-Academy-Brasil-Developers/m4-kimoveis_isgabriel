@@ -3,6 +3,7 @@ import { TCategory } from "../../interfaces/category.interfaces";
 import { createCategoryService } from "../../services/category/createCategory.service";
 import { getCategoriesListService } from "../../services/category/getAllCategories.service";
 import { getRealEstateByCategoryService } from "../../services/category/getRealEstateByCategory.service";
+import { Category } from "../../entities";
 
 const createCategoryController = async (
     req: Request,
@@ -27,7 +28,9 @@ const getRealEstateByCategoryController = async (
     res: Response
 ): Promise<Response> => {
     const categoryId: number = Number(req.params.id);
-    const realEstate = await getRealEstateByCategoryService(categoryId);
+    const realEstate: Category = await getRealEstateByCategoryService(
+        categoryId
+    );
 
     return res.status(200).json(realEstate);
 };

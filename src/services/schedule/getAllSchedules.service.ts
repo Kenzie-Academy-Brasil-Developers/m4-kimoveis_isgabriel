@@ -9,7 +9,7 @@ const getAllSchedulesService = async (
     const realEstateRepo: Repository<RealEstate> =
         AppDataSource.getRepository(RealEstate);
 
-    const findRealEstate = await realEstateRepo
+    const findRealEstate: RealEstate | null = await realEstateRepo
         .createQueryBuilder("realEstate")
         .innerJoinAndSelect("realEstate.address", "address")
         .leftJoinAndSelect("realEstate.schedules", "schedule")

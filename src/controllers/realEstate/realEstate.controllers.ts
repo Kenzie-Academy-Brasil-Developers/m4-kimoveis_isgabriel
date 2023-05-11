@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
     TCreateRealEstate,
+    TReturnAllRealEstates,
     TReturnCreateRealEstate,
 } from "../../interfaces/realEstate.interfaces";
 import { createRealEstateService } from "../../services/realEstate/createRealEstate.service";
@@ -21,7 +22,8 @@ const getAllRealEstatesController = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    const getAllRealEstates = await getAllRealEstatesService();
+    const getAllRealEstates: TReturnAllRealEstates =
+        await getAllRealEstatesService();
 
     return res.status(200).json(getAllRealEstates);
 };

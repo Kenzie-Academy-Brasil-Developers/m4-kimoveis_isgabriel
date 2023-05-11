@@ -8,12 +8,12 @@ const ensureTokenIsValid = (
     res: Response,
     next: NextFunction
 ): Response | void => {
-    let token = req.headers.authorization;
+    let token: string | undefined = req.headers.authorization;
     if (!token) {
         throw new AppError("Missing bearer token", 401);
     }
 
-    const auth = token.split(" ")[1];
+    const auth: string = token.split(" ")[1];
 
     jwt.verify(auth, process.env.SECRET_KEY!, (error, decoded: any) => {
         if (error) {

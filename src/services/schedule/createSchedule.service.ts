@@ -15,7 +15,7 @@ const createScheduleService = async (
     const realEstateRepo: Repository<RealEstate> =
         AppDataSource.getRepository(RealEstate);
 
-    const scheduleExists = await scheduleRepo
+    const scheduleExists: Schedule | null = await scheduleRepo
         .createQueryBuilder("schedule")
         .where("schedule.realEstateId = :realEstateId", {
             realEstateId: scheduleData.realEstateId,
@@ -34,8 +34,8 @@ const createScheduleService = async (
         throw new AppError("Invalid hour, available times are 8AM to 18PM");
     }
 
-    const newVisitDate = new Date(scheduleData.date);
-    const dayOfWeek = newVisitDate.getDay();
+    const newVisitDate: Date = new Date(scheduleData.date);
+    const dayOfWeek: number = newVisitDate.getDay();
     if (dayOfWeek === 0 || dayOfWeek === 6) {
         throw new AppError("Invalid date, work days are monday to friday", 400);
     }
@@ -51,7 +51,7 @@ const createScheduleService = async (
         throw new AppError("RealEstate not found", 404);
     }
 
-    const userHasScheduled = await scheduleRepo.findOneBy({
+    const userHasScheduled: Schedule | null = await scheduleRepo.findOneBy({
         date: scheduleData.date,
         hour: scheduleData.hour,
     });

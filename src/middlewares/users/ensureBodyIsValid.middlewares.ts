@@ -4,7 +4,7 @@ import { ZodTypeAny } from "zod";
 const ensureBodyIsValid =
     (schema: ZodTypeAny) =>
     (req: Request, res: Response, next: NextFunction): Response | void => {
-        const validateBody = schema.parse(req.body);
+        const validateBody: any = schema.parse(req.body);
         req.body = validateBody;
 
         return next();
